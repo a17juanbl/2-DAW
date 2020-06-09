@@ -1,0 +1,398 @@
+/* Definimos el tipo de letra por defecto */
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Los títulos de primer nivel tendrán una pequeña sombra
+  y estarán alineados a la izquierda y separados de la base
+  por 20px*/
+h1{
+  color: #333;
+  text-shadow: 0px 1px 3px #FFFFFF;
+  font-family: sans-serif;
+  left: 0px;
+  bottom: 20px;
+  margin-bottom: 0px;
+  text-align: left;
+}
+
+/* Las líneas horizontales las pondremos con puntos de 1px,
+  color #666666 y separados por arriba y por abajo en 10px,
+  y por la derecha e izquierda en 20px*/
+hr{
+  margin: 10px 20px;
+  border: 1px dashed #666;
+}
+
+/* Sombra utilizada para textos*/
+.sombraT{
+  text-shadow: 0px 1px 3px #FFFFFF;
+}
+
+/* Sombra utilizada en la cabecera y en los subtítulos de la página */
+.sombraD{
+  box-shadow: 3px 3px 4px #b1b3a2;
+  -moz-box-shadow: 3px 3px 4px #b1b3a2;
+  -webkit-box-shadow: 3px 3px 4px #b1b3a2;
+}
+
+
+/* Contenedor general para todo el 'body'
+  por si queremos mover o modificar la página completa */
+#todo{
+  margin: 0px auto;
+  float: left;
+}
+
+/* Contenedor para el 'membrete' con su logo y el menú */
+#cabecera{text-align: center;}
+
+/* Caja de esquinas redondeadas para la cabecera.
+   Le he puesto un gradiente que comienza al 85% del relleno verde.
+   Se le pone un color de fondo liso por si el navegador no admite
+   los degradados*/
+.cajaRedonda{
+  float:left;
+  position: relative;
+  left: 0px;
+  margin-left: 5px; 
+  height: 100px;
+  width: 926px;
+  background: -webkit-linear-gradient(#3E9722 85%, #CAE646);
+  background: -moz-linear-gradient(#3E9722 85%, #CAE646);
+  background: -o-linear-gradient(#3E9722 85%, #CAE646);
+  background: linear-gradient(#3E9722 85%, #CAE646);
+  background-color: #3E9722;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  padding: 20px 20px 0px 20px;
+}
+
+/* Contenedor del logotipo */
+.logo{left:0px; margin-bottom: 0px; width: 200px; float:left;}
+
+/* modificamos los enlaces puestos en el logotipo */
+.logo * a{
+  text-decoration: none;
+  color: #333;
+}
+
+/* Texto y márgenes para el subtítulo del logo */
+.subtitulo{
+  color: #333;
+  left: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin: 0px;
+  text-align: left;
+}
+
+/*
+.subtitul p{
+  margin-left: 20px;
+  text-align: justify;
+}
+*/
+
+/* Contenedor para las distintas opciones que compondrá el menú*/
+.menu{  
+  float: right;
+  position: absolute;
+  margin-right: 15px;
+  right: 0px;
+  bottom: -15px;
+  margin-bottom: 0px;
+}
+
+/* Definimos el tipo de lista desordenada */
+.menu ul{
+  margin-right: 0;
+  padding: 0; 
+  list-style: none; 
+  float:right; 
+}
+
+/* Cada elemento de la lista tendrá un tamaño determinado
+  con un degradado desde la izquierda que va del verde de la tarea
+  al blanco y termina en el mismo verde, una pequeña transparencia
+  y un redondeado de esquinas de 5px.
+  Se le pone un color de fondo liso por si el navegador no admite
+  los degradados*/
+.menu ul li {
+  float: left;
+  width: 90px;
+  margin-left:2px;
+  background: -webkit-linear-gradient(left, #CAE646, #FFFFFF, #CAE646);
+  background: -moz-linear-gradient(left, #CAE646, #FFFFFF, #CAE646);
+  background: -o-linear-gradient(left, #CAE646, #FFFFFF, #CAE646);
+  background: linear-gradient(left, #CAE646, #FFFFFF, #CAE646);
+  background-color: #CAE646;
+  -moz-opacity: 0.75;
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+} 
+
+/* Los enlaces del menú no tendrán decoración, utilizarán
+  una fuente pequeña del color que se indica para la tarea
+  que ocupará 2.1 veces del alto de la fuente, y en negrita */
+.menu ul li a {
+  display: block; 
+  line-height: 2.1em; 
+  text-decoration: none; 
+  color: #333;
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+  font-family: arial, sans-serif;
+} 
+
+/* Cuando nos posicionemos sobre una de las opciones, cambiará
+  el color de fondo con un degradado radial desde la izquierda
+  que va del naranja de la tarea al blanco y termina en el mismo
+  naranja. Le damos el mismo radio de redondeo de esquinas anterior.
+  Se le pone un color de fondo por si el navegador no admite los degradados*/
+.menu ul li a:hover {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: -webkit-linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background: -moz-linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background: -o-linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background: linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background-color: #e58c24;
+}
+
+/* Formato que tendrá la opción seleccionada.
+  Radio de esquinas de 5px, sombra del azul de la tarea que
+  al ponerla desde 0px sirve como resplandor, y color de fondo
+  degradado igual que el anterior. También ponemos un color de
+  fondo por si no se admite los degradados.
+  El color de letra se pone en #666666 */
+#activo {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0px 0px 20px #3c74e6;
+  -moz-box-shadow: ,0px 0px 20px #3c74e6;
+  -webkit-box-shadow: ,0px 0px 20px #3c74e6;
+  background: -webkit-linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background: -moz-linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background: -o-linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background: linear-gradient(left, #e58c24, #FFFFFF, #e58c24);
+  background-color: #e58c24;
+  color: #666;
+}
+
+/* Contenedor de todo el cuerpo de la página que va entre la
+  cabecera y el pie*/
+#cuerpo{
+  float: left;
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+/* Definimos el color de letra y grosor para todos los enlaces que
+  situemos en el 'cuerpo' (ya que todos pertenecerán a otro contenedor
+  dentro de éste)*/
+#cuerpo * a{
+  color: green;
+  font-weight: bold;
+}
+
+/* Definimos el texto y márgenes para todos los textos presentados en el
+  'cuerpo' con la etiqueta '<p>'*/
+#cuerpo * p{
+  text-align: justify;
+  margin: 0px 20px;
+}
+
+/* Ponemos la decoración que se pide sobre el 'cuerpo' y el 'pie', consistente
+  en una línea de 3px con esquinas superiores redondeadas, del color verde
+  indicado para la tarea, y sin borde inferior*/
+.esquinas{
+  float: left;
+  position: absolute;
+  -moz-border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px;
+  -webkit-border-radius: 15px 15px 0px 0px;
+  border: #3E9722 3px solid;
+  border-bottom: none;
+  width: 920px;
+  height: 100px;
+  left: 0px;
+  margin-left: 5px;
+  padding: 20px 20px 0px 20px;
+}
+
+/* Contenedor para las tres columnas que compondrá el 'cuerpo'*/
+.cajaSecundaria{
+  /* Con este efecto de las esquinas quedaría mejor y quitaríamos la capa 'esquinas'
+    
+   -moz-border-radius: 15px 15px 100px 100px;
+  border-radius: 15px 15px 100px 100px;
+  -webkit-border-radius: 15px 15px 100px 100px;
+  border: #CAE646 3px solid;
+  border-bottom: none;
+  background-color: white;
+  */
+  width: 920px;
+  float: left;
+  position: relative;
+  left: 0px;
+  margin-left: 5px;
+  padding: 20px 20px 0px 20px;
+}
+
+/* Los listados y los enlaces que contengan saldrán en verde y con letra pequeña */
+.cajaSecundaria * li,
+.cajaSecundaria * li a:visited{
+  color: #3E9722;
+  font-size: small;
+}
+
+/* Los enlaces de los listados saldrán en azul cuando nos posicionemos sobre ellos */
+.cajaSecundaria * li a:hover{
+  color: blue;
+}
+/* Contenedor para la columna de la izquierda, con el ancho determinado en la tarea */
+#izquierda{
+  width: 220px;
+  height: 100%;
+  float: left;
+  position: relative;
+  left: 0px;
+  top: 0px;
+}
+
+/* Definimos la apariencia de los títulos para las listas de definición de
+  la columna de la izquierda */
+#izquierda * dt{
+  margin-left: 20px;
+  font: 0.9em sans-serif, Arial, Helvetica;
+  font-weight: bold;
+}
+
+/* Definimos la apariencia de los datos para las listas de definición de
+  la columna de la izquierda */
+#izquierda * dd{
+  margin-left: 20px;
+  padding-bottom: 15px;
+}
+
+/* Contenedor para los distintos apartados (título de los temas).
+  Redondeo las esquinas superiores, defino la fuente y utilizo un
+  padding para separar el texto de los bordes del recuadro azul.
+  También pongo un margen inferior para separar el texto siguiente
+  de este contenedor.
+*/
+.subtitu{
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #3c74e6;
+  color: white;
+  font: 0.9em/1.4 Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+}
+
+/* Contenedor para el formulario, que lo separa del borde izquierdo*/
+.separa{
+  padding-left: 20px;
+}
+
+/* Contenedor de la columna central con el tamaño y padding izquierdo
+  determinados en la tarea */
+#centro{
+  width: 480px;
+  height: 100%;
+  padding-left: 20px;
+  float: left;
+  position: relative;
+  left: 0px;
+  top: 0px;
+}
+
+/* Los listados tendrán un tipo de letra normal y de color negro */
+#centro li{
+  font: 1em Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+/* Logotipo creado con una imagen de fondo repetida (no se veía muy bien e hice un
+  pequeño circulito gris), con un fondo gris claro, y que usará un fuente extragrande
+  del color verde indicado en la tarea y con una pequeña sombra*/
+.logoFP{
+  float: left;
+  margin: 5px 20px 20px 20px;
+  background-image: url("../img/rellenoLogo.png");
+  background-color: #ebebeb;
+  text-align: center;
+  font-size: 5em;
+  font-weight: bolder;
+  color: #3e9722;
+  text-shadow: 0px 1px 3px #3e9722;
+}
+/* El tipo de letra cursiva, algo más pequeña de lo normal y con separación de
+  20px por todos lados excepto por arriba*/
+.italica{
+  margin: 0px 20px 20px 20px;
+  font: 0.9em sans-serif, Arial, Helvetica;
+  font-style: italic;
+}
+/* Contenedor para las fechas que se sitúan a la derecha del subtítulo */
+.fecha{
+  float: right;
+  font: 0.75em Arial, Helvetica, sans-serif bold white;
+}
+
+/* Definimos el tipo y tamaño de la letra utilizada para finalizar las noticias
+  centrales */
+.peque{
+  font: 0.5em Arial, Helvetica, sans-serif;
+  font-size: smaller;
+}
+
+/* Contenedor de la columna de la derecha, con el tamaño y padding indicados
+  en la tarea */
+#derecha{
+  width: 180px;
+  height: 100%;
+  padding-left: 20px;
+  float: left;
+  position: relative;
+  left: 0px;
+  top: 0px;
+}
+
+/* Definimos cómo queremos que aparezcan los enlaces en la columna de la izquierda */
+#izquierda * a{
+  text-decoration: none;
+  font: 0.8em sans-serif, Arial, Helvetica;
+}
+
+/* Contenedor para la parte inferior de la página */
+#pie{
+  float: left;
+  position: relative;
+  left: 0px;
+}
+
+/* Definimos los enlaces del pie de página de color verde, según la tarea*/
+#pie * a{
+  color: green;
+}
+
+
+/* Imagen alargada que aparece en la columna de la derecha*/
+.imCentro{
+  float:left;
+  width: 100%;
+  text-align: center;
+}

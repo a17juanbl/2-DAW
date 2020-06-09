@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Tarea 03 - DWEC - Jos&eacute; Luis Comesa&ntilde;a</title>
+        <script type="text/javascript" LANGUAGE="JavaScript">
+        
+            // Escribimos la función que escribirá la primera parte de la tarea
+            function cuerpo(){
+                // Poner "Ejemplo de Ventana Nueva" en esta ventana y en tamaño H3
+                document.write("<h3>Ejemplo de Ventana Nueva</h3>");
+                // Abro una tabla para contener todos los datos
+                document.write("<table>");
+                // Escribo la URL completa
+                document.write("<tr><td><b> URL Completa: </b></td><td>"+location.href+"</td></tr>");
+                // Escribo el protocolo utilizado
+                document.write("<tr><td><b> Protocolo utilizado: </b></td><td>"+location.protocol+"</td></tr>");
+                // Escribo el nombre en código del navegador
+                document.write("<tr><td><b> Nombre en c&oacute;digo del navegador: </b></td><td>"+navigator.appCodeName+"</td></tr>");
+                // Compruebo si se dispone de Java instalado en esta ventana
+                miJava=navigator.javaEnabled()?"SI":"NO";
+                // Escribo si tiene instalado Java o no
+                document.write("<tr><td>Java <b>"+miJava+"</b> disponible en esta ventana</td></tr>");
+                document.write("</table>");
+                /*
+                    Fuera de la tabla de datos creo un elemento 'iframe' para lo que llamo a una función
+                    donde pongo los parámetros solicitados para ella y le paso la página que deseo mostrar.
+                    Le indico que cargue la página de google.
+                    Aunque se pide en el ejercicio, ésta no se carga porque Google respeta lo que se llama
+                    política del mismo origen, pero lo he probado poniendo por ejemplo la mía www.sitiolibre.com
+                    y funciona perfectamente
+                */
+                crearframe("http://www.google.es/webhp?hl=es&tab=ww");
+            }
+            
+            // Función para realizar un iframe con el contenido de la página que le pasemos
+            function crearframe(pagina) {
+                // creamos el elemento
+                var miIframe = document.createElement("iframe");
+                // le asignamos un identificador
+                miIframe.id = "miIframe";
+                // le cargamos la página recibida
+                miIframe.src = pagina;
+                // asignamos el ancho del marco
+                miIframe.style.width= '800px';
+                // asignamos el alto del marco
+                miIframe.style.height = '600px';
+                // ponemos el elemento 'miIframe' dentro de la variable 'control'
+                var control = document.getElementById("miIframe")
+                // comprobamos si 'control' no contiene nada para poder añadirlo al documento
+                if (control==null)
+                    document.body.appendChild(miIframe);
+            }
+			function cierraVentana(){
+				// Cerramos esta ventana emergente
+                this.close();
+			}
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" LANGUAGE="JavaScript">
+			// Imprimimos todos los datos solicitados
+            cuerpo();
+			// Ponemos un boton para cerrar esta ventana
+			document.write("<form id='miFor' action=''>");
+			document.write("	<input type='button' value='Cerrar ventana' id='abrir' onclick='cierraVentana()' />");
+			document.write("</form>");
+        </script>
+    </body>
+</html>

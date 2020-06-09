@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tarea 2 - Jos&eacute; Luis Comesa&ntilde;a</title>
+  </head>
+  <body>
+    <!-- Cabecera de la página -->
+    <h2>Tarea 2 - Desarrollo Web en Entorno Cliente</h2>
+    <h3>Jos&eacute; Luis Comesa&ntilde;a Cabeza</h3>
+    <script type="text/javascript">
+      document.write("<table><tr>");
+      // Inicializamos las variables a utilizar
+      var a = 7, b = 8, c = 9, i = 0;
+      /*
+       Vamos a utilizar una tabla de 4 columnas para presentar los datos
+       La idea es que las tablas de multiplicar ocupen 3 columnas y dejamos
+       la última vacía.
+       Para el ejercicio del desplazamiento de bits utilizaremos el espacio
+       de dos columnas unidas "colspan" para cada operación.
+       Dentro de cada celda, bajaremos de fila utilizando <br /> y dentro
+       de cada fila de la tabla, accedemos a la siguiente fila cerrando la
+       anterior </tr> y abriendo una nueva <tr>, hasta terminar cerrando la
+       tabla con </table>
+      */
+      // Bucle 'for' para imprimir la tabla de multiplicar del 7 (primera celda, primera fila)
+      document.write("<td width=\"33%\">TABLA DE MULTIPLICAR DEL 7 <br />");
+      for (i=1; i<=10; i++){
+        document.write(a+" x "+i+" = "+a*i+"<br />");     
+      }
+      // Inicializamos la variable i para poder utilizarla de nuevo
+      i=1;
+
+      // Bucle 'while' para imprimir la tabla de sumar del 8 (segunda celda, primera fila)
+      document.write("</td><td width=\"33%\">TABLA DE SUMAR DEL 8 <br />");
+      while(i<=10){
+        document.write(b+" + "+i+" = "+(b+i)+"<br />");
+        i++;
+      }
+      i=1;
+
+      // Bucle do...while para imprimir la tabla de dividir del 9 (tercera celda, primera fila)
+      document.write("</td><td width=\"33%\">TABLA DE DIVIDIR DEL 9 <br />");
+      do{
+        document.write(c+" / "+i+" = "+(c/i)+"<br />");
+        i++;
+      }while(i<=10);
+      
+      // Cerramos la fila anterior y abrimos una nueva alineando su contenido al centro
+      // Utilizamos dos celdas para mostrar el contenido
+      document.write("</td><td></td></tr><tr align=\"center\"><td colspan=\"2\">");
+      document.write("<h3>125 / 8 con desplazamiento de bits </h3>");
+      // El desplazamiento a la derecha implica división por 2
+      // 2 elevado a 3 es igual a 8 por lo que para dividir entre 8 hemos de poner >>3
+      document.write(125>>3);
+
+      // Pasamos a la siguiente celda de la misma fila, uniendo nuevamente dos celdas
+      document.write("</td><td colspan=\"2\">");
+    
+      document.write("<h3>40 x 4 con desplazamiento de bits </h3>");
+      // El desplazamiento a la izquierda implica multiplicación por 2
+      // 2 elevado a 2 es igual a 4 por lo que para multiplicar por 4 hemos de poner <<2
+      document.write(40<<2);
+
+      // Cerramos la fila anterior y abrimos una nueva. Unimos las dos primeras celdas
+      document.write("</td></tr><tr align=\"center\"><td colspan=\"2\">");
+
+      document.write("<h3>25 / 2 con desplazamiento de bits </h3>");
+      // 2 elevado a 1 es igual a 2 por lo que para dividir entre 2 hemos de poner >>1
+      document.write(25>>1);
+
+      // Unimos las dos últimas celdas de la misma fila para presentar los últimos datos
+      document.write("</td><td colspan=\"2\" align=\"center\">");
+      
+      document.write("<h3>10 x 16 con desplazamiento de bits </h3>");
+      // 2 elevado a 4 es igual a 16 por lo que para multiplicar por 16 hemos de poner <<4
+      document.write(10<<4);
+      
+      // Cerramos la última celda, última fila y la tabla
+      document.write("</td></tr></table>");
+    </script>
+  </body>
+</html>

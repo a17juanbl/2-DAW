@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://127.0.0.1/dwes/tarea6" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://127.0.0.1/dwes/tarea6">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://127.0.0.1/dwes/tarea6"/>
+    </wsdl:types>
+    <wsdl:message name="getPvpRequest">
+        <wsdl:part name="cod" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="getPvpResponse">
+        <wsdl:part name="getPvpReturn" type="xsd:float"/>
+    </wsdl:message>
+    <wsdl:message name="getStockRequest">
+        <wsdl:part name="producto" type="xsd:string"/>
+        <wsdl:part name="tienda" type="xsd:int"/>
+    </wsdl:message>
+    <wsdl:message name="getStockResponse">
+        <wsdl:part name="getStockReturn" type="xsd:int"/>
+    </wsdl:message>
+    <wsdl:message name="getFamiliasRequest"/>
+    <wsdl:message name="getFamiliasResponse">
+        <wsdl:part name="getFamiliasReturn" type="soap-enc:Array"/>
+    </wsdl:message>
+    <wsdl:message name="getProductosFamiliaRequest">
+        <wsdl:part name="codFamilia" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="getProductosFamiliaResponse">
+        <wsdl:part name="getProductosFamiliaReturn" type="soap-enc:Array"/>
+    </wsdl:message>
+    <wsdl:portType name="FuncionesPortType">
+        <wsdl:operation name="getPvp">
+            <wsdl:documentation>Obtener el precio del producto que tenga el código que le pasemos</wsdl:documentation>
+            <wsdl:input message="tns:getPvpRequest"/>
+            <wsdl:output message="tns:getPvpResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getStock">
+            <wsdl:documentation>Obtener el stock existente en una tienda y de un producto concreto</wsdl:documentation>
+            <wsdl:input message="tns:getStockRequest"/>
+            <wsdl:output message="tns:getStockResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getFamilias">
+            <wsdl:documentation>Listar todas las familias de productos existentes</wsdl:documentation>
+            <wsdl:input message="tns:getFamiliasRequest"/>
+            <wsdl:output message="tns:getFamiliasResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getProductosFamilia">
+            <wsdl:documentation>Listar todos los productos existentes de la familia que se le indique</wsdl:documentation>
+            <wsdl:input message="tns:getProductosFamiliaRequest"/>
+            <wsdl:output message="tns:getProductosFamiliaResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="FuncionesBinding" type="tns:FuncionesPortType">
+        <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getPvp">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://127.0.0.1/dwes/tarea6/servicio.php?method=getPvp" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStock">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://127.0.0.1/dwes/tarea6/servicio.php?method=getStock" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getFamilias">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://127.0.0.1/dwes/tarea6/servicio.php?method=getFamilias" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getProductosFamilia">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://127.0.0.1/dwes/tarea6/servicio.php?method=getProductosFamilia" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Funciones">
+        <wsdl:documentation>
+			Class Funciones 
+			Curso: Desarrollo Web de Entorno Servidor 
+			Tema 6: SERVICIOS WEB 
+			Ejercicio: Funciones.php, fichero comentado para la creación automática de documento WSDL
+			author: José Luis Comesaña
+		</wsdl:documentation>
+        <wsdl:port name="FuncionesPort" binding="tns:FuncionesBinding">
+            <soap-env:address location="http://127.0.0.1/dwes/tarea6/servicio.php"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

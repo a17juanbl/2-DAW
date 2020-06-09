@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Tarea 03 - DWEC - Jos&eacute; Luis Comesa&ntilde;a</title>
+        <script type="text/javascript" LANGUAGE="JavaScript">
+		
+            // Función para abrir una ventana no redimensionable
+            function ventanaNoRedim(){
+                miVentana = window.open('ventanaExterior.html', 'ejercicio', 'menubar=false, toolbar=false, location=false, directories=false, resizable=false, top=20, left=20');
+				miVentana.focus();
+            }
+			
+			// Función para imprimir las preguntas tanto si se ha producido un error como si no
+			function pregunta(miError,texto){
+				var miTexto=miError+texto+": ";
+				return window.prompt(miTexto);
+			}
+			
+			// Función encargada de comprobar si la fecha introducida es correcta
+			function validaFecha(dia1,mes1,anno1){
+				var actual = new Date();
+				var fechaBien=false;
+				// Calculamos si el año introducido es bisiesto
+				var bisiesto=((anno1 % 4 == 0) && ((!(anno1 % 100 == 0))||(anno1 % 400 == 0)) ) ? 29 : 28 ;
+				// si hemos puesto a febrero un número de días superior al adecuado
+				if(mes1==2 && dia1>bisiesto) {
+					fechaBien = false;
+					// Si los meses que tienen hasta 31 días contiene un número superior
+				}else if((mes1==1 || mes1==3 || mes1==5 || mes1==7 || mes1==8 || mes1==10 || mes1==12) && (dia1>31)){
+					fechaBien = false;
+					// Si los meses de 30 días tienen mas
+				}else if((mes1==4 || mes1==6 || mes1==9 || mes1==11) && (dia1>30)){
+					fechaBien = false;
+					// Si los años son inferiores a 1900 o superiores al actual
+				}else if(anno1<1900 || anno1>actual.getFullYear()){
+					fechaBien = false;
+					// si ponemos dias o meses nulos o negativos, o si el mes es superior a 12
+				}else if(dia1<1 || mes1<1 || mes1>12){
+					fechaBien = false;
+					// si no se ha producido ningún error
+				}else{
+					fechaBien = true;
+				}
+				return fechaBien;
+			}
+
+            /*
+             Función que recibe los datos de día, mes y año introducidos mediante el formulario y calcula
+             la edad del individuo basándose en una resta de años (actual-nacimiento)
+             después se comprueba si el mes de nacimiento es superior al actual, en cuyo caso le restamos
+             uno a la anterior operación. En caso que el mes de nacimiento sea igual que el actual, se comprueba
+             si el día de nacimiento es superior al actual, restándole uno a la resta de los años, y en caso
+             contrario se mantiene la resta de años.
+             Si la edad calculada no da un número se devuelve el valor null 
+            */
+			function calculaEdad(diaN,mesN,anoN){ 
+                hoy=new Date();
+                edad=hoy.getFullYear()-anoN;
+                if(mesN>hoy.getMonth()+1){
+                    edad-=1;
+                }else if(mesN==hoy.getMonth()+1){
+                    if(diaN>hoy.getDate()){
+                        edad-=1;
+                    }
+                }
+                if(isNaN(edad))
+                    edad=null;
+                return edad; 
+            }
+
+            // Función que calcula la estación del año según el día y mes de nacimiento
+            function estacion(diaE,mesE){
+                // Convertimos a número entero el valor introducido para el mes
+                mesEN=parseInt(mesE);
+				mesEL=mesEN.toString();
+                // si hemos introducido el día sin cero inicial para valores inferiores a 10 se le añade cero al inicio
+                if(diaE<10) diaE="0"+diaE;
+				diaEL=diaE.toString();
+                // Juntamos (no sumamos) el mes y el año
+                mesano=mesEL.concat(diaEL);
+                // El resultado de la concatenación anterior se pasa a número entero
+                estac=parseInt(mesano);
+                // si da un resultado mayor de 0 (101)
+                if(estac>0){
+                    // desde el 21 de marzo (321) hasta el 20 de junio (620) es primavera
+                    if(estac>=321&&estac<=620){
+                        return "primavera";
+                    // desde el 21 de junio (621) hasta el 20 de septiembre (920) es verano
+                    }else if(estac>=621&&estac<=920){
+                        return "verano";
+                    // desde el 21 de septiembre (921) hasta el 20 de diciembre (1220) es otoño
+                    }else if(estac>=921&&estac<=1220){
+                        return "oto&ntilde;o";
+                    // cualquier otra fecha será invierno
+                    }else{
+                        return "invierno";
+                    }
+                }else{
+                    return null;
+                }
+            }
+
+			// Función para el botón de reiniciar. Carga de nuevo la página
+			function reiniciar(){
+				document.location.href = document.location.href;
+			}
+        </script>
+    </head>
+    <body>
+    	<h1>TAREA DWEC03</h1><hr />
+        <script type="text/javascript" LANGUAGE="JavaScript">
+			var nombre, apellidos;
+			nombre=pregunta("","Introduzca su nombre");
+			// Si hemos dejado el nombre en blanco, volvemos a preguntar y comprobar
+			while(!nombre || nombre=="" || nombre==null){
+				nombre=pregunta("El nombre no puede estar en blanco\n","Introduzca su nombre");
+			}
+			apellidos=pregunta("","Introduzca sus apellidos");
+			// Si hemos dejado los apellidos en blanco, volvemos a preguntar y comprobar
+			while(!apellidos || apellidos=="" || apellidos==null){
+				apellidos=pregunta("Los apellidos no pueden estar en blanco\n","Introduzca sus apellidos");
+			}
+			fechaNac=pregunta("","Introduzca la fecha de nacimiento en el formato DD/MM/AAAA");
+			// Descomponemos el dato introducido en dia, mes y año
+			var dia=parseInt(fechaNac.substring(0,fechaNac.indexOf("/")));
+			var mes=parseInt(fechaNac.substring(fechaNac.indexOf("/")+1,fechaNac.lastIndexOf("/")));
+			var anno=parseInt(fechaNac.substring(fechaNac.lastIndexOf("/")+1,fechaNac.length));
+			var miError = "";
+			// Si los datos de fecha introducidos no son correctos, volvemos a preguntar y comprobar
+			while(!validaFecha(dia,mes,anno) || isNaN(dia) || isNaN(mes)|| isNaN(anno)){
+				if( dia==0||isNaN(dia)) miError+="Día erróneo\n";
+				if( mes==0||isNaN(mes)) miError+="Mes erróneo\n";
+				if( anno==0||isNaN(anno)) miError+="Año erróneo\n";
+				fechaNac=pregunta(miError,"Introduzca la fecha de nacimiento en el formato DD/MM/AAAA");
+				dia=parseInt(fechaNac.substring(0,fechaNac.indexOf("/")));
+				mes=parseInt(fechaNac.substring(fechaNac.indexOf("/")+1,fechaNac.lastIndexOf("/")));
+				anno=parseInt(fechaNac.substring(fechaNac.lastIndexOf("/")+1,fechaNac.length));
+				miError = "";
+				validaFecha(dia,mes,anno); 
+			}
+            // Inicializamos la variable que contendrá todos los datos
+            var res="";
+            // Inicializamos la variable que contendrá los campos no introducidos o mal tecleados
+            var miError="";
+            // Llamamos a la función que nos calcula la edad enviándole el día, mes y año de nacimiento
+            edad=calculaEdad(dia,mes,anno);
+			// Ponemos el nombre
+			var res="<tr><td>Buenos d&iacute;as, <b>"+nombre+"</b></td></tr>";
+			// Juntamos nombre y apellidos
+			nombre=nombre + " " + apellidos;
+			// ponemos el nombre en mayúsculas
+			nomMay=nombre.toUpperCase();
+			// almacenamos la frase que contiene el número de caracteres
+			res+="<tr><td>Tu nombre completo (nombre y apellidos) tiene <b>"+nombre.length+"</b> caracteres, incluidos espacios</td></tr>";
+			// Si contiene la letra 'A' indicamos dónde está la primera y la última, en caso contrario
+			// indicamos que no contiene tal letra
+			if(nomMay.indexOf('A')>=0){
+				res+="<tr><td>La <b>primera letra 'A'</b> de tu nombre est&aacute; en la posici&oacute;n <b>"+(nomMay.indexOf('A')+1)+"</b></td></tr>";
+				res+="<tr><td>La <b>&uacute;ltima letra 'A'</b> de tu nombre est&aacute; en la posici&oacute;n <b>"+(nomMay.lastIndexOf('A')+1)+"</b></td></tr>";
+			}else{
+				res+="<tr><td>Tu nombre no contiene ninguna letra 'A'</td></tr>";
+			}
+			// Almacenamos la frase con el nombre sin las tres primeras letras
+			res+="<tr><td>Tu nombre <b>menos las tres primeras letras</b> es <b>"+nombre.substring(3,nombre.lenght)+"</b></td></tr>";
+			// Almacenamos la frase con el nombre en mayúsculas
+			res+="<tr><td>Tu nombre todo en <b>MAY&Uacute;SCULAS</b> es <b>"+nomMay+"</b></td></tr>";
+			// Almacenamos la frase con la edad (calculada anteriormente)
+			anos=edad>0?" a&ntilde;os":"";
+			res+="<tr><td>Tu <b>edad</b> es <b>"+edad+"</b>"+anos+"</td></tr>";
+			/*
+			 No tenía muy claro qué se tenía que poner en lo del apartado:
+			 'Naciste un feliz XXXXXX del año XXXX'
+			 y vi mas razonable el poner por ejemplo Naciste un feliz 'verano' del año 1999
+			 por lo que creé una función para calcular la estación del año según el día de nacimiento
+			 Llamamos a la función que calcula la estación del año del día de nacimiento
+			*/
+			estacNac=estacion(dia,mes);
+			// Si nos devuelve un valor distinto de null es que se ha averiguado la estación y la almacenamos
+			if(estacNac){
+				res+="<tr><td>Naciste un feliz d&iacute;a de <b>"+estacNac+"</b> del a&ntilde;o <b>"+anno+"</td></tr>";
+			}
+			// Almacenamos la frase que contiene el coseno de 180
+			res+="<tr><td>El <b>coseno de 180</b> es <b>"+Math.cos(180)+"</b></td></tr>";
+			// Almacenamos el array de los números dados y calculamos el mayor de sus elementos
+			numMay=new Array(34,67,23,75,35,19);
+			// preparamos la cadena que contendrá la cadena del array y el número mayor
+			res+="<tr><td>El n&uacute;mero mayor de<b> (";
+			cadena="";
+			mayor=0;
+			// recorremos todos los elementos del array
+			for(i=0;i<numMay.length;i++){
+				// almacenamos los números del array en una variable de texto para poder imprimirlos
+				cadena+=numMay[i].toString()+", ";
+				// si el numero actual es mayor que el almacenado, el almacenado coge su valor
+				if(numMay[i]>mayor)
+					mayor=numMay[i];
+			}
+			// a la cadena con todos los dígitos del array le eliminamos los dos últimos caracteres (, )
+			cadena=cadena.substring(0,cadena.length-2);
+			// almacenamos la cadena del array completo y el número mayor averiguado
+			res+=cadena+")</b> es "+mayor+"</td></tr>";
+			// Almacenamos la frase con un número al azar
+			res+="<tr><td>Ejemplo de n&uacute;mero al azar entre 0 y 100: <b>"+parseInt(Math.random()*101)+"</b></td></tr>";
+			// Cerramos la anterior tabla y creamos una nueva que contenga dos celdas
+			// cada una de ellas con un botón (abrir la ventana secundaria y volver a cargar la actual) 
+			res+="</table><table><tr>";
+			res+="<form id='miFor' action=''>";
+			res+="<td><input type='button' value='Abrir ventana' id='abrir' onclick='ventanaNoRedim()' /></td>";
+			res+="<td><input type='button' value='Reiniciar' id='abrir' onclick='reiniciar()' /></td>";
+			res+="</form></tr>";
+			// Escribimos todo el bloque de información
+			document.write("<table>");
+			document.write(res);
+			document.write("</table>");
+        </script>
+	</body>
+</html>
